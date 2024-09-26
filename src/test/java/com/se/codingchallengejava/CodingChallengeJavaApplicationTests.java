@@ -10,4 +10,9 @@ class CodingChallengeJavaApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void testCalculatePraemie() {
+
+    }
+
 }
