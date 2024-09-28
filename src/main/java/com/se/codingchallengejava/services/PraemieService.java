@@ -13,21 +13,21 @@ public class PraemieService {
 
 private Map<String, Double> bundeslandFaktor;
 private Map<String, Double> fahrzeugTypFaktor;
-private final CSVReaderService csvReaderService;
+private final PostCodeService postCodeService;
 private final PraemieRepository praemieRepository;
 
 @Autowired
-public PraemieService(CSVReaderService csvReaderService, PraemieRepository praemieRepository) {
-    this.csvReaderService = csvReaderService;
+public PraemieService(PostCodeService postCodeService, PraemieRepository praemieRepository) {
+    this.postCodeService = postCodeService;
     this.praemieRepository = praemieRepository;
-    initBunderslandFaktor();
-    initfahrzeugTypFaktor();
+    initBundeslandFaktor();
+    initFahrzeugTypFaktor();
 }
 
     public double calculatePraemie(int geschaetzteKilometer, int postleitzahlZulassungsstelle, String fahrzeugtyp) {
         double faktorKilometer;
-        double faktorBundesland = 0;
-        double faktorFahrzeugTyp = 0;
+        double faktorBundesland;
+        double faktorFahrzeugTyp;
 
         if (geschaetzteKilometer < 5001) {
             faktorKilometer = 0.5;
@@ -39,19 +39,14 @@ public PraemieService(CSVReaderService csvReaderService, PraemieRepository praem
             faktorKilometer = 2;
         }
 
-        csvReaderService.loadCSV("src/main/resources/postcodes.csv");
+        String bundesland = postCodeService.getBundesLand(postleitzahlZulassungsstelle);
+        faktorBundesland = bundeslandFaktor.getOrDefault(bundesland, 0.0);
 
-        for (Map.Entry<String, Double> entry : bundeslandFaktor.entrySet()) {
-            if (entry.getKey().equals(csvReaderService.getBundesLand(postleitzahlZulassungsstelle))) {
-                faktorBundesland = entry.getValue();
-            }
+        if (faktorBundesland == 0.0) {
+            throw new IllegalArgumentException("Postleitzahl nicht gefunden.");
         }
 
-        for (Map.Entry<String, Double> entry : fahrzeugTypFaktor.entrySet()) {
-            if (entry.getKey().equals(fahrzeugtyp)) {
-                faktorFahrzeugTyp = entry.getValue();
-            }
-        }
+        faktorFahrzeugTyp = fahrzeugTypFaktor.getOrDefault(fahrzeugtyp, 0.0);
 
         double berechnetePraemie = faktorKilometer * faktorBundesland * faktorFahrzeugTyp;
 
@@ -61,7 +56,7 @@ public PraemieService(CSVReaderService csvReaderService, PraemieRepository praem
         return berechnetePraemie;
     }
 
-    public void initBunderslandFaktor() {
+    public void initBundeslandFaktor() {
         bundeslandFaktor = new HashMap<>();
         bundeslandFaktor.put("Bayern", 1.8);
         bundeslandFaktor.put("Niedersachsen", 1.7);
@@ -81,7 +76,7 @@ public PraemieService(CSVReaderService csvReaderService, PraemieRepository praem
         bundeslandFaktor.put("Bremen", 0.3);
     }
 
-    private void initfahrzeugTypFaktor() {
+    private void initFahrzeugTypFaktor() {
         fahrzeugTypFaktor = new HashMap<>();
         fahrzeugTypFaktor.put("Kleinwagen", 1.0);
         fahrzeugTypFaktor.put("Mittelklassewagen", 1.1);

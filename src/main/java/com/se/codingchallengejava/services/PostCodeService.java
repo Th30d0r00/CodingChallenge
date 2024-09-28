@@ -11,9 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CSVReaderService {
+public class PostCodeService {
 
     private List<PostCode> postCodeList = new ArrayList<>();
+
+    public PostCodeService() {
+        loadCSV("src/main/resources/postcodes.csv");
+    }
 
     public void loadCSV(String filePath) {
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
