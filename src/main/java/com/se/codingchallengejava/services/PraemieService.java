@@ -85,7 +85,7 @@ public PraemieService(PostCodeService postCodeService, PraemieRepository praemie
         bundeslandFaktor.put("Bremen", 0.3);
     }
 
-    private void initFahrzeugTypFaktor() {
+    public void initFahrzeugTypFaktor() {
         fahrzeugTypFaktor = new HashMap<>();
         fahrzeugTypFaktor.put("Kleinwagen", 1.0);
         fahrzeugTypFaktor.put("Mittelklassewagen", 1.1);
