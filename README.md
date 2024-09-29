@@ -21,10 +21,10 @@ Die Anwendung beinhaltet zwei zentrale Services:
 
 ### Tests
 
-Für die Testautomatisierung wurde das Framework **JUnit** verwendet. Tests wurden implementiert, um sicherzustellen, dass:
+Für die **Testautomatisierung** wurde das Framework **JUnit** in Kombination mit **Mockito** eingesetzt. Tests wurden implementiert, um sicherzustellen, dass:
 
-- Die Prämienberechnung korrekt erfolgt, basierend auf den Faktoren für Kilometer, Fahrzeugtyp und Bundesland.
-- Die CSV-Datei ordnungsgemäß eingelesen und die Daten korrekt verarbeitet werden.
+- Die **Prämienberechnung** korrekt erfolgt, basierend auf den Faktoren für geschätzte Kilometer, Fahrzeugtyp und Bundesland.
+- Die **CSV-Datei** ordnungsgemäß eingelesen und die darin enthaltenen Daten korrekt verarbeitet werden.
 
 ### Frontend
 Das Frontend wurde mit dem **Vaadin-Webframework** entwickelt, das eine benutzerfreundliche und moderne Weboberfläche für die Interaktion mit dem Prämienrechner bietet.
