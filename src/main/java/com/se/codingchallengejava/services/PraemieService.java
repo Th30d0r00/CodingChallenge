@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+* Service zum Berechnen der Prämie
+* */
+
 @Service
 public class PraemieService {
 
@@ -55,6 +59,11 @@ public PraemieService(PostCodeService postCodeService, PraemieRepository praemie
 
         return berechnetePraemie;
     }
+
+    /*
+    * Initialisierung der Faktoren für Bundesland und Fahrzeugtyp. Der Bundeslandfaktor richtet sich nach der Fläche
+    * eines Bundeslandes. Der Fahrzeugtyp Faktor richtet sich nach der Größe des Fahrzeugs und dem Verbrauch.
+    * */
 
     public void initBundeslandFaktor() {
         bundeslandFaktor = new HashMap<>();
