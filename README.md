@@ -1,4 +1,5 @@
 # Dokumentation Versicherungsprämienrechner
+
 --- 
 ### Datenbank
 
@@ -18,6 +19,11 @@ Die Anwendung beinhaltet zwei zentrale Services:
 1. **PostCodeService**: Dieser Service liest die Datei `postcodes.csv` ein und stellt Funktionen bereit, um Informationen basierend auf Postleitzahlen abzurufen.
     
 2. **PraemieService**: Dieser Service berechnet die Versicherungsprämie auf Grundlage von Faktoren wie geschätzten Kilometern, Fahrzeugtyp und Bundesland. Er greift per **Dependency Injection** auf den `PostCodeService` zu, um das Bundesland anhand der Postleitzahl zu ermitteln.
+
+### API
+
+Um die Funktionalität des Prämienrechners über eine HTTP-API zugänglich zu machen, wurde ein **RestController** implementiert. 
+Dieser bietet Endpunkte für die Berechnung der Prämie.
 
 ### Tests
 

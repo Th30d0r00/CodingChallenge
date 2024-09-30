@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Service zum Einlesen der csv Datei
+ * */
+
 @Service
 public class PostCodeService {
 

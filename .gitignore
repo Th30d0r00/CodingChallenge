@@ -36,3 +36,6 @@ build/
 # H2 database files
 *.mv.db
 *.trace.db
+
+#frontend generated files
+/src/main/frontend/generated/

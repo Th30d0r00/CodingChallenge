@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+* API Controller für die Prämie Berechnung (PraemieService) für Drittanbieter
+* */
+
 @RestController
 @RequestMapping("/api/praemie")
 public class PraemieController {
