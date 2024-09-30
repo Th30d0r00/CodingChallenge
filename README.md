@@ -33,6 +33,6 @@ Für die **Testautomatisierung** wurde das Framework **JUnit** in Kombination mi
 - Die **CSV-Datei** ordnungsgemäß eingelesen und die darin enthaltenen Daten korrekt verarbeitet werden.
 
 ### Frontend
-Das Frontend wurde mit dem **Vaadin-Webframework** entwickelt, das eine benutzerfreundliche und moderne Weboberfläche für die Interaktion mit dem Prämienrechner bietet.
+Das Frontend wurde mit dem **Vaadin-Webframework** entwickelt, das eine benutzerfreundliche und moderne Weboberfläche bietet.
 
 ---
