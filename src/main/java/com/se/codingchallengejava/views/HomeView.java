@@ -16,6 +16,7 @@ public class HomeView extends VerticalLayout {
     private TextField geschaetzteKilometer;
     private TextField postleitzahlZulassungsstelle;
     private TextField fahrzeugtyp;
+    private TextField praemie;
     private Button berechnen;
 
     public HomeView(PraemieService praemieService) {
@@ -29,7 +30,8 @@ public class HomeView extends VerticalLayout {
                 int postleitzahl = Integer.parseInt(postleitzahlZulassungsstelle.getValue());
                 String fahrzeug = fahrzeugtyp.getValue();
                 try {
-                    praemieService.calculatePraemie(kilometer, postleitzahl, fahrzeug);
+                    double berechnete_praemie = praemieService.calculatePraemie(kilometer, postleitzahl, fahrzeug);
+                    praemie.setValue(String.valueOf(berechnete_praemie));
                 } catch (IllegalArgumentException ex) {
                     Notification.show("Postleitzahl nicht gefunden. Versuche eine andere Postleitzahl.");
                 }
@@ -93,8 +95,11 @@ public class HomeView extends VerticalLayout {
         postleitzahlZulassungsstelle.setWidth("50%");
         fahrzeugtyp = new TextField("Fahrzeugtyp");
         fahrzeugtyp.setWidth("50%");
+        praemie = new TextField("Prämie");
+        praemie.setWidth("50%");
+        praemie.setReadOnly(true);
         berechnen = new Button("Berechnen");
-        add(geschaetzteKilometer, postleitzahlZulassungsstelle, fahrzeugtyp, berechnen);
+        add(geschaetzteKilometer, postleitzahlZulassungsstelle, fahrzeugtyp, praemie, berechnen);
         setSizeFull();
         setAlignItems(Alignment.CENTER);
     }
